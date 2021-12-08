@@ -1,10 +1,8 @@
 const fs = require("fs");
 const path = require("path");
-const data = fs.readFileSync(path.join(__dirname, "input_test.txt")).toString().split(',').map(el => parseInt(el));
+const data = fs.readFileSync(path.join(__dirname, "input.txt")).toString().split(',').map(el => parseInt(el));
 
 let matrix = new Array(data.length).fill(0);
-const minData = Math.min(...data);
-const maxData = Math.max(...data);
 
 for (let i = 0; i < data.length; i++) {
     matrix[i] = new Array(data.length).fill(0);
@@ -39,7 +37,6 @@ let task1 = data => {
 
     //printMatrix(matrix);
 
-
     let minIndex = -1;
 
     let min = Number.MAX_VALUE;
@@ -55,7 +52,7 @@ let task1 = data => {
         }
     }
 
-    console.log(min, minIndex, data[minIndex])
+    //console.log(min, minIndex, data[minIndex])
     return min;
 
 
@@ -64,9 +61,25 @@ console.log(task1(data));
 
 let task2 = data => {
 
+    const minVal = Math.min(...data);
+    const maxVal = Math.max(...data);
+
+    let min = Number.MAX_VALUE;
+    for (let i = minVal; i <= maxVal; i++) {
+        let newMin = 0;
+        for (let j = 0; j < data.length; j++) {
+            let n = Math.abs(data[j] - i);
+            newMin += (n * ( n + 1)) / 2;
+        }
+        if (newMin < min) {
+            min = newMin;
+        }
+    }
+
+    return min;
 
 }
-//console.log(task2(data));
+console.log(task2(data));
 
 module.exports = {
     task1, task2
