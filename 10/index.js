@@ -37,14 +37,14 @@ let task1 = data => {
 
     let totalScoreTask1 = 0;
     let totalScoreTask2 = [];
+    
     for (let i = 0; i < data.length; i++) {
         let res = checkParenthesis(data[i])
         if (res.corrupted) {
             totalScoreTask1 += score1.indexOf(res.corrupted);
         } else {
             let rowScore = 0;
-            res.stack.reverse();
-            for (let c = 0; c < res.stack.length; c++) {
+            for (let c = res.stack.length-1; c >= 0 ; c--) {
                 rowScore = (5 * rowScore) + score2.indexOf(res.stack[c]);
             }
             totalScoreTask2.push(rowScore)
