@@ -7,15 +7,15 @@ let checkParenthesis = s => {
     let i = 0;
     let stack = [];
     while (i < s.length) {
-        if (s[i] === "{" || s[i] === "(" || s[i] === "[" || s[i] === "<") {
+        if (s[i] === '{' || s[i] === '(' || s[i] === '[' || s[i] === '<') {
             stack.push(s[i]);
-        } else if (s[i] === "}" && stack[stack.length - 1] === "{") {
+        } else if (s[i] === '}' && stack[stack.length - 1] === '{') {
             stack.pop();
-        } else if (s[i] === ")" && stack[stack.length - 1] === "(") {
+        } else if (s[i] === ')' && stack[stack.length - 1] === '(') {
             stack.pop();
-        } else if (s[i] === "]" && stack[stack.length - 1] === "[") {
+        } else if (s[i] === ']' && stack[stack.length - 1] === '[') {
             stack.pop();
-        } else if (s[i] === ">" && stack[stack.length - 1] === "<") {
+        } else if (s[i] === '>' && stack[stack.length - 1] === '<') {
             stack.pop();
         } else {
             return {corrupted: s[i]};
