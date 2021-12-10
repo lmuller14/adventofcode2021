@@ -10,13 +10,13 @@ let checkParenthesis = s => {
         if (s[i] === "{" || s[i] === "(" || s[i] === "[" || s[i] === "<") {
             stack.push(s[i]);
         } else if (s[i] === "}" && stack[stack.length - 1] === "{") {
-            stack.pop()
+            stack.pop();
         } else if (s[i] === ")" && stack[stack.length - 1] === "(") {
-            stack.pop()
+            stack.pop();
         } else if (s[i] === "]" && stack[stack.length - 1] === "[") {
-            stack.pop()
+            stack.pop();
         } else if (s[i] === ">" && stack[stack.length - 1] === "<") {
-            stack.pop()
+            stack.pop();
         } else {
             return {corrupted: s[i]};
         }
