@@ -5,24 +5,24 @@ const data = fs.readFileSync(path.join(__dirname, "input.txt")).toString().split
 
 let checkParenthesis = s => {
     let i = 0;
-    let arr = [];
+    let stack = [];
     while (i < s.length) {
         if (s[i] === "{" || s[i] === "(" || s[i] === "[" || s[i] === "<") {
-            arr.push(s[i]);
-        } else if (s[i] === "}" && arr[arr.length - 1] === "{") {
-            arr.pop()
-        } else if (s[i] === ")" && arr[arr.length - 1] === "(") {
-            arr.pop()
-        } else if (s[i] === "]" && arr[arr.length - 1] === "[") {
-            arr.pop()
-        } else if (s[i] === ">" && arr[arr.length - 1] === "<") {
-            arr.pop()
+            stack.push(s[i]);
+        } else if (s[i] === "}" && stack[stack.length - 1] === "{") {
+            stack.pop()
+        } else if (s[i] === ")" && stack[stack.length - 1] === "(") {
+            stack.pop()
+        } else if (s[i] === "]" && stack[stack.length - 1] === "[") {
+            stack.pop()
+        } else if (s[i] === ">" && stack[stack.length - 1] === "<") {
+            stack.pop()
         } else {
             return {corrupted: s[i]};
         }
         i++
     }
-    return {stack: arr};
+    return {stack: stack};
 };
 
 let task1 = data => {
